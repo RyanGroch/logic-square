@@ -1,0 +1,65 @@
+.btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1vh;
+}
+
+.color-btn {
+  width: 10vmin;
+  height: 10vmin;
+  margin: 5px;
+  border-radius: 10px;
+  border: 2px solid #000;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 2vmin;
+}
+
+.other-btn {
+  width: 35vmin;
+  min-height: 5vmin;
+  font-size: 3vmin;
+  font-weight: 600;
+  margin: 0 5px;
+  border-radius: 10px;
+  border: 2px solid #000;
+  background-color: #fff;
+  padding: 1vmin;
+  cursor: pointer;
+  transition: background-color 0.3s linear, color 0.3s linear;
+}
+
+.new-game-btn {
+  background-color: #ccffcc;
+  border: 2px solid #00994d;
+}
+
+.new-game-btn:hover {
+  background-color: #00994d;
+  color: #fff;
+}
+
+.solve-for-me-btn {
+  border: 2px solid #002699;
+  background-color: #b3b3ff;
+}
+
+.solve-for-me-btn:hover {
+  background-color: #002699;
+  color: #fff;
+}
+
+@media screen and (min-width: 35rem) {
+  .color-btn {
+    width: min(7vh, 8vmin);
+    height: min(7vh, 8vmin);
+    margin: 0 20px;
+  }
+
+  .other-btn {
+    font-size: min(2.5vmin, 1rem);
+  }
+}
