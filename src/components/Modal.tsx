@@ -1,7 +1,6 @@
 import {
   useContext,
   MouseEventHandler,
-  FormEventHandler,
   EventHandler,
   ChangeEvent,
 } from "react";
@@ -25,7 +24,7 @@ function Modal() {
         state.maxTrues > 24
       ? "Values of min/max trues must be between 1 and 24 (inclusive)."
       : "";
-  const submitForm: FormEventHandler = (e) => {
+  const submitForm: MouseEventHandler = (e) => {
     e.preventDefault();
     const errorMsg = checkForErrors();
 

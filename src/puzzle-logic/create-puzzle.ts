@@ -1,4 +1,4 @@
-import { Board, SolvedBoard } from "../types";
+import { PartiallySolvedBoard, SolvedBoard } from "../types";
 import {
   getConditions,
   removeSquareString,
@@ -8,18 +8,20 @@ import {
 } from "./puzzle-helpers";
 import solverGenerator from "./solver-generator";
 
-const createPuzzle = (solution: SolvedBoard): Board => {
+const createPuzzle = (solution: SolvedBoard): PartiallySolvedBoard => {
   const squareStrings = getSquareStrings();
-  const board: Board = solution.map((row) => row.map((val) => val));
+  const board: PartiallySolvedBoard = solution.map((row) =>
+    row.map((val) => val)
+  );
   const finalPuzzle = createPuzzleNext(board, solution, squareStrings);
   return finalPuzzle;
 };
 
 const createPuzzleNext = (
-  board: Board,
+  board: PartiallySolvedBoard,
   solution: SolvedBoard,
   squareStrings: Array<string>
-): Board => {
+): PartiallySolvedBoard => {
   if (!squareStrings.length) {
     return board;
   }

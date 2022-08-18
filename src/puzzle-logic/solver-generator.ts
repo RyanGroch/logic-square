@@ -1,4 +1,4 @@
-import { Board, SolverCondition } from "../types";
+import { PartiallySolvedBoard, SolverCondition } from "../types";
 import {
   progress,
   inputAnswer,
@@ -7,9 +7,11 @@ import {
   checkConditions,
 } from "./solver-helpers";
 
-const solutions: Array<Board> = [];
+const solutions: Array<PartiallySolvedBoard> = [];
 
-const solverGenerator = (board: Board): Array<Board> => {
+const solverGenerator = (
+  board: PartiallySolvedBoard
+): Array<PartiallySolvedBoard> => {
   solutions.length = 0;
   solverGeneratorNext(board, 0, 0, []);
 
@@ -17,7 +19,7 @@ const solverGenerator = (board: Board): Array<Board> => {
 };
 
 const solverGeneratorNext = (
-  board: Board,
+  board: PartiallySolvedBoard,
   rowIndex: number,
   colIndex: number,
   conditions: Array<SolverCondition>

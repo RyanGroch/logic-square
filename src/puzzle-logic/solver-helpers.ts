@@ -1,11 +1,11 @@
 import {
-  Board,
   SolverCondition,
   Square,
   Direction,
   SolvedBoard,
   VisualizerBoard,
-  BoardCondition,
+  PartiallySolvedBoard,
+  PartiallySolvedVal,
 } from "../types";
 
 export const inputCondition = (
@@ -19,11 +19,11 @@ export const inputCondition = (
 };
 
 export const inputAnswer = (
-  board: Board,
+  board: PartiallySolvedBoard,
   rowIndex: number,
   colIndex: number,
-  valToInput: boolean | BoardCondition
-): Board => {
+  valToInput: PartiallySolvedVal
+): PartiallySolvedBoard => {
   return board.map((row, i) =>
     row.map((currVal, j) =>
       rowIndex === i && colIndex === j ? valToInput : currVal
@@ -32,7 +32,7 @@ export const inputAnswer = (
 };
 
 export const checkConditions = (
-  board: Board,
+  board: PartiallySolvedBoard,
   conditions: Array<SolverCondition>
 ): boolean => {
   for (let condition of conditions) {
@@ -113,7 +113,9 @@ export const countTrueSquares = (
   }, 0);
 };
 
-export const getRegularBoard = (visBoard: VisualizerBoard): Board =>
+export const getRegularBoard = (
+  visBoard: VisualizerBoard
+): PartiallySolvedBoard =>
   visBoard.map((row) =>
     row.map((item) => (item.length === 2 ? item[0] : item))
   );

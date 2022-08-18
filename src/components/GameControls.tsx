@@ -45,7 +45,7 @@ function GameControls({ colors }: Props) {
           className={`${styles["other-btn"]} ${styles["new-game-btn"]}`}
           onClick={openModal}
         >
-          Generate New Puzzle
+          New Puzzle
         </button>
         <button
           className={`${styles["other-btn"]} ${styles["solve-for-me-btn"]}`}

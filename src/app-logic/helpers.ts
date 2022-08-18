@@ -1,11 +1,14 @@
-import { Board, SolvedBoard, UnsolvedBoard } from "../types";
+import { PartiallySolvedBoard, SolvedBoard, ColorBoard } from "../types";
 import { startingColor } from "../color-consts";
 import { pregenerated } from "../pregenerated";
 
 // Consider types - it might be useful to have some explicitly named types here
-export const checkComplete = (colorMap: number[][], solution: boolean[][]) => {
+export const checkComplete = (
+  colorBoard: ColorBoard,
+  solution: SolvedBoard
+) => {
   let passing = true;
-  colorMap.forEach((row, i) =>
+  colorBoard.forEach((row, i) =>
     row.forEach((val, j) => {
       if ((val === 0 && !solution[i][j]) || (val !== 0 && solution[i][j])) {
         passing = false;
@@ -16,7 +19,7 @@ export const checkComplete = (colorMap: number[][], solution: boolean[][]) => {
   return passing;
 };
 
-export const boardToColor = (board: Board): number[][] => {
+export const boardToColor = (board: PartiallySolvedBoard): ColorBoard => {
   return board.map((row) =>
     row.map((val) => {
       if (typeof val !== "boolean") return startingColor as number;

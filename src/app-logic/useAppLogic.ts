@@ -1,10 +1,10 @@
 import {
   StateI,
   SolvedBoard,
-  Board,
   GeneratorReturn,
   SolverStateI,
   UnsolvedBoard,
+  PartiallySolvedBoard,
 } from "../types";
 import { useEffect, useState, useMemo } from "react";
 import {
@@ -117,8 +117,10 @@ export default function useAppLogic(): [
     }
 
     if (state.startSolving) {
-      const currentPuzzle = state.puzzle as Board;
-      const visBoard: Board = currentPuzzle.map((row) => [...row]);
+      const currentPuzzle = state.puzzle as PartiallySolvedBoard;
+      const visBoard: PartiallySolvedBoard = currentPuzzle.map((row) => [
+        ...row,
+      ]);
       const solverState = {
         board: visBoard,
         row: 0,

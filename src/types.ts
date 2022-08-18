@@ -7,16 +7,16 @@ export enum Direction {
 
 export type BoardCondition = [Direction, number, boolean];
 
-type Row = Array<BoardCondition | boolean>;
-export type Board = Array<Row>;
+export type PartiallySolvedVal = BoardCondition | boolean;
+export type PartiallySolvedBoard = PartiallySolvedVal[][];
 
-type SolvedRow = Array<boolean>;
-export type SolvedBoard = Array<SolvedRow>;
+export type SolvedBoard = boolean[][];
 export type UnsolvedBoard = BoardCondition[][];
 
-type VisualizerVal = [boolean, boolean];
-type VisualizerRow = Array<BoardCondition | VisualizerVal>;
-export type VisualizerBoard = Array<VisualizerRow>;
+type VisualizerVal = BoardCondition | [boolean, boolean];
+export type VisualizerBoard = VisualizerVal[][];
+
+export type ColorBoard = number[][];
 
 export type Square = [number, number];
 export type SolverCondition = [Array<Square>, number, boolean, boolean];
@@ -28,7 +28,7 @@ export type WorkerPayload = GeneratorPayload | SolverPayload;
 export type GeneratorReturn = [UnsolvedBoard, SolvedBoard];
 
 export interface SolverStateI {
-  board: Board;
+  board: PartiallySolvedBoard;
   row: number;
   col: number;
   conditions: Array<SolverCondition>;
@@ -39,7 +39,7 @@ export interface StateI {
   initialized: boolean;
   puzzle: UnsolvedBoard | null;
   solution: SolvedBoard | null;
-  colorBoard: number[][];
+  colorBoard: ColorBoard;
   selectedColor: number;
   startSolving: boolean;
   solving: boolean;

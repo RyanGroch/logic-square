@@ -1,5 +1,10 @@
 import { countTrueSquares, getSquares } from "./solver-helpers";
-import { Board, BoardCondition, Direction, SolvedBoard } from "../types";
+import {
+  BoardCondition,
+  Direction,
+  PartiallySolvedBoard,
+  SolvedBoard,
+} from "../types";
 
 export const getConditions = (
   solution: SolvedBoard,
@@ -52,7 +57,7 @@ export const removeSquareString = (
 ): Array<string> => squares.filter((square) => square !== squareToRemove);
 
 export const insertCondition = (
-  board: Board,
+  board: PartiallySolvedBoard,
   condition: BoardCondition,
   rowIndex: number,
   colIndex: number
