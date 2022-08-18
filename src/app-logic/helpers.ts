@@ -32,8 +32,9 @@ export const boardToColor = (board: PartiallySolvedBoard): ColorBoard => {
 export const getDefaultColorBoard = (): number[][] =>
   Array(5).fill(Array(5).fill(startingColor));
 
+// PROBLEM WITH THIS FUNCTION???
 export const getNumTrues = (minTrues: number, maxTrues: number): number =>
-  Math.floor(Math.random() * (maxTrues - minTrues) + minTrues);
+  Math.floor(Math.random() * (1 + maxTrues - minTrues) + minTrues);
 
 export const getPregeneratedPuzzle = (minTrues: number, maxTrues: number) => {
   const numTrues = getNumTrues(minTrues, maxTrues);
