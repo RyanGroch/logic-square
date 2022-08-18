@@ -5,7 +5,7 @@ import {
   EventHandler,
   ChangeEvent,
 } from "react";
-import { GameContext, GameContextI } from "../context";
+import { GameContext, GameContextI } from "../app-logic/context";
 import { FaWindowClose } from "react-icons/fa";
 import styles from "./Modal.module.css";
 
@@ -14,25 +14,26 @@ function Modal() {
   const closeModal: MouseEventHandler = () => {
     setState({ ...state, showModal: false });
   };
+  const checkForErrors = () =>
+    !state.minTrues || !state.maxTrues
+      ? "Please fill out all required fields."
+      : state.minTrues > state.maxTrues
+      ? "The maximum number of trues must be greater than or equal to the minimum number of trues."
+      : state.minTrues < 1 ||
+        state.minTrues > 24 ||
+        state.maxTrues < 1 ||
+        state.maxTrues > 24
+      ? "Values of min/max trues must be between 1 and 24 (inclusive)."
+      : "";
   const submitForm: FormEventHandler = (e) => {
     e.preventDefault();
-    const errorMsg =
-      !state.minTrues || !state.maxTrues
-        ? "Please fill out all required fields."
-        : state.minTrues > state.maxTrues
-        ? "The maximum number of trues must be greater than or equal to the minimum number of trues."
-        : state.minTrues < 1 ||
-          state.minTrues > 25 ||
-          state.maxTrues < 1 ||
-          state.maxTrues > 25
-        ? "Values of min/max trues must be between 1 and 25."
-        : "";
+    const errorMsg = checkForErrors();
 
     setState({
       ...state,
       showModal: Boolean(errorMsg),
       showError: Boolean(errorMsg),
-      startGenerating: !errorMsg,
+      [e.currentTarget.id]: !errorMsg,
       errorMsg,
     });
   };
@@ -41,12 +42,6 @@ function Modal() {
   ) => {
     const target = e.currentTarget;
     setState({ ...state, [target.id]: Number(target.value) || 0 });
-  };
-  const setSeed: EventHandler<ChangeEvent> = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
-    const target = e.currentTarget;
-    setState({ ...state, seed: target.value });
   };
   return (
     <div className={styles["modal__wrap"]}>
@@ -57,13 +52,13 @@ function Modal() {
             <FaWindowClose />
           </div>
         </div>
-        <form onSubmit={submitForm}>
+        <form>
           <div className={styles["modal__form-box"]}>
             <label htmlFor="minTrues">Min # True: </label>
             <input
               type="number"
               min={1}
-              max={25}
+              max={24}
               id="minTrues"
               value={state.minTrues || ""}
               onChange={setTrues}
@@ -74,19 +69,10 @@ function Modal() {
             <input
               type="number"
               min={1}
-              max={25}
+              max={24}
               id="maxTrues"
               value={state.maxTrues || ""}
               onChange={setTrues}
-            />
-          </div>
-          <div className={styles["modal__form-box"]}>
-            <label htmlFor="seed">Seed (optional): </label>
-            <input
-              type="text"
-              id="seed"
-              value={state.seed}
-              onChange={setSeed}
             />
           </div>
           {state.showError ? (
@@ -97,8 +83,21 @@ function Modal() {
             ""
           )}
           <div className={styles["modal__btn-box"]}>
-            <button type="submit" className={styles.modal__btn}>
+            <button
+              type="button"
+              className={styles.modal__btn}
+              id="startGenerating"
+              onClick={submitForm}
+            >
               Generate Puzzle
+            </button>
+            <button
+              type="button"
+              className={`${styles.modal__btn} ${styles["modal__btn-secondary"]}`}
+              id="startGettingPuzzle"
+              onClick={submitForm}
+            >
+              Get Pre-Generated Puzzle
             </button>
           </div>
         </form>

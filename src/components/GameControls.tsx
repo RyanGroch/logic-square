@@ -1,5 +1,5 @@
 import { MouseEventHandler, useContext } from "react";
-import { GameContext, GameContextI } from "../context";
+import { GameContext, GameContextI } from "../app-logic/context";
 import styles from "./GameControls.module.css";
 
 interface Props {

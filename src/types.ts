@@ -21,7 +21,7 @@ export type VisualizerBoard = Array<VisualizerRow>;
 export type Square = [number, number];
 export type SolverCondition = [Array<Square>, number, boolean, boolean];
 
-export type GeneratorPayload = [number, number, string];
+export type GeneratorPayload = [number, number];
 export type SolverPayload = [SolverStateI, UnsolvedBoard];
 export type WorkerPayload = GeneratorPayload | SolverPayload;
 
@@ -45,12 +45,13 @@ export interface StateI {
   solving: boolean;
   startGenerating: boolean;
   generating: boolean;
+  startGettingPuzzle: boolean;
+  gettingPuzzle: boolean;
   complete: boolean;
   showModal: boolean;
   showError: boolean;
   errorMsg: string;
   minTrues: number;
   maxTrues: number;
-  seed: string;
   solverState: SolverStateI | null;
 }

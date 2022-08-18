@@ -1,7 +1,7 @@
 import styles from "./GameBoard.module.css";
 import { UnsolvedBoard } from "../types";
 import { MouseEventHandler, useContext } from "react";
-import { GameContext, GameContextI } from "../context";
+import { GameContext, GameContextI } from "../app-logic/context";
 import {
   FaAngleDown,
   FaAngleLeft,
@@ -23,6 +23,7 @@ function GameBoard({ colors, startingColor }: Props) {
     row.map((val) => colors[val])
   );
   const setBoxColor: MouseEventHandler = (e) => {
+    if (state.solving) return;
     const target = e.currentTarget as HTMLElement;
     const rowIndex = Number(target.dataset.row);
     const colIndex = Number(target.dataset.col);
@@ -42,7 +43,7 @@ function GameBoard({ colors, startingColor }: Props) {
   return (
     <div className={styles["board-wrap"]}>
       <div className={styles.board}>
-        {state.generating ? (
+        {state.generating || state.gettingPuzzle ? (
           <div className={styles["loading-screen"]}>
             <p>Generating Puzzle...</p>
           </div>

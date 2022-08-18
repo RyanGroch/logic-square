@@ -1,5 +1,5 @@
 import { createContext, SetStateAction, Dispatch } from "react";
-import { StateI } from "./types";
+import { StateI } from "../types";
 
 export interface GameContextI {
   state: StateI;
