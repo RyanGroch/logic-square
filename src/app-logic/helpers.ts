@@ -2,37 +2,22 @@ import { PartiallySolvedBoard, SolvedBoard, ColorBoard } from "../types";
 import { startingColor } from "../color-consts";
 import { pregenerated } from "../pregenerated";
 
-// Consider types - it might be useful to have some explicitly named types here
-export const checkComplete = (
-  colorBoard: ColorBoard,
-  solution: SolvedBoard
-) => {
-  let passing = true;
-  colorBoard.forEach((row, i) =>
-    row.forEach((val, j) => {
-      if ((val === 0 && !solution[i][j]) || (val !== 0 && solution[i][j])) {
-        passing = false;
-        return;
-      }
-    })
+export const checkComplete = (colorBoard: ColorBoard, solution: SolvedBoard) =>
+  colorBoard.every((row, i) =>
+    row.every(
+      (val, j) =>
+        (val === 0 && solution[i][j]) || (val !== 0 && !solution[i][j])
+    )
   );
-  return passing;
-};
 
-export const boardToColor = (board: PartiallySolvedBoard): ColorBoard => {
-  return board.map((row) =>
-    row.map((val) => {
-      if (typeof val !== "boolean") return startingColor as number;
-      if (val) return 0;
-      return 1;
-    })
+export const boardToColor = (board: PartiallySolvedBoard): ColorBoard =>
+  board.map((row) =>
+    row.map((val) => (typeof val !== "boolean" ? startingColor : val ? 0 : 1))
   );
-};
 
 export const getDefaultColorBoard = (): number[][] =>
   Array(5).fill(Array(5).fill(startingColor));
 
-// PROBLEM WITH THIS FUNCTION???
 export const getNumTrues = (minTrues: number, maxTrues: number): number =>
   Math.floor(Math.random() * (1 + maxTrues - minTrues) + minTrues);
 

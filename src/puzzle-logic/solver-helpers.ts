@@ -40,14 +40,11 @@ export const checkConditions = (
     const [lowestOfClaim, highestOfClaim] = squares.reduce(
       (vals: [number, number], square: Square): [number, number] => {
         const [i, j] = square;
-
-        if (typeof board[i][j] !== "boolean") {
-          return [vals[0], vals[1] + 1];
-        } else if (board[i][j] === claim) {
-          return [vals[0] + 1, vals[1] + 1];
-        }
-
-        return vals;
+        return typeof board[i][j] !== "boolean"
+          ? [vals[0], vals[1] + 1]
+          : board[i][j] === claim
+          ? [vals[0] + 1, vals[1] + 1]
+          : vals;
       },
       [0, 0]
     );
@@ -105,13 +102,12 @@ export const getSquares = (
 export const countTrueSquares = (
   squares: Array<Square>,
   solution: SolvedBoard
-): number => {
-  return squares.reduce((numTrue: number, square: Square) => {
+): number =>
+  squares.reduce((numTrue: number, square: Square) => {
     const [row, col] = square;
     const value = solution[row][col];
     return value ? numTrue + 1 : numTrue;
   }, 0);
-};
 
 export const getRegularBoard = (
   visBoard: VisualizerBoard
