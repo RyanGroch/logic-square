@@ -1,8 +1,8 @@
 import { SolvedBoard } from "../types";
-import { getSquareStrings } from "./puzzle-helpers";
+import { allSquareStrings } from "./puzzle-helpers";
 
 const createSolution = (numTrues: number): SolvedBoard => {
-  const falseSquares = getSquareStrings();
+  const falseSquares = [...allSquareStrings];
 
   for (let i = 0; i < numTrues; i++) {
     const randIndex = Math.floor(Math.random() * falseSquares.length);

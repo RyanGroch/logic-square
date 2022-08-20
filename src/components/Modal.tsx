@@ -93,7 +93,7 @@ function Modal() {
             <button
               type="button"
               className={`${styles.modal__btn} ${styles["modal__btn-secondary"]}`}
-              id="startGettingPuzzle"
+              id="gettingPuzzle"
               onClick={submitForm}
             >
               Get Pre-Generated Puzzle

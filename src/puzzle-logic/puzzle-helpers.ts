@@ -19,9 +19,9 @@ export const getConditions = (
     Direction.Down,
     Direction.Left,
   ];
-  const sdirs = shuffleArray<Direction>(dirs);
+  const shuffledDirs = shuffleArray<Direction>(dirs);
 
-  for (let dir of sdirs) {
+  for (let dir of shuffledDirs) {
     const squares = getSquares(rowIndex, colIndex, dir);
 
     if (!squares.length) {
@@ -33,18 +33,20 @@ export const getConditions = (
 
     for (let claim of [true, false]) {
       const inputNum = claim ? numTrue : numFalse;
+
       if (value) {
         conditions.push([dir, inputNum, claim]);
-      } else {
-        const possibleNumClaims = Array(squares.length + 1)
-          .fill(0)
-          .map((_, i) => i);
-        const possibleNumsRemaining = possibleNumClaims.filter(
-          (num) => inputNum !== num
-        );
-        for (let num of possibleNumsRemaining) {
-          conditions.push([dir, num, claim]);
-        }
+        continue;
+      }
+
+      const possibleNumClaims = Array(squares.length + 1)
+        .fill(0)
+        .map((_, i) => i);
+      const possibleNumsRemaining = possibleNumClaims.filter(
+        (num) => inputNum !== num
+      );
+      for (let num of possibleNumsRemaining) {
+        conditions.push([dir, num, claim]);
       }
     }
   }
@@ -68,15 +70,6 @@ export const insertCondition = (
     )
   );
 
-export const getSquareStrings = (): Array<string> =>
-  Array(25)
-    .fill("")
-    .map((_, i) => {
-      const row = Math.floor(i / 5);
-      const col = i % 5;
-      return `${row}/${col}`;
-    });
-
 export const shuffleArray = <T>(array: Array<T>): Array<T> => {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -87,3 +80,11 @@ export const shuffleArray = <T>(array: Array<T>): Array<T> => {
   }
   return arr;
 };
+
+export const allSquareStrings = Array(25)
+  .fill("")
+  .map((_, i) => {
+    const row = Math.floor(i / 5);
+    const col = i % 5;
+    return `${row}/${col}`;
+  });

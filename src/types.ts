@@ -36,7 +36,6 @@ export interface SolverStateI {
 }
 
 export interface StateI {
-  initialized: boolean;
   puzzle: UnsolvedBoard | null;
   solution: SolvedBoard | null;
   colorBoard: ColorBoard;
@@ -45,7 +44,6 @@ export interface StateI {
   solving: boolean;
   startGenerating: boolean;
   generating: boolean;
-  startGettingPuzzle: boolean;
   gettingPuzzle: boolean;
   complete: boolean;
   showModal: boolean;

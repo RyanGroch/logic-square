@@ -3,13 +3,13 @@ import {
   getConditions,
   removeSquareString,
   insertCondition,
-  getSquareStrings,
+  allSquareStrings,
   shuffleArray,
 } from "./puzzle-helpers";
 import solverGenerator from "./solver-generator";
 
 const createPuzzle = (solution: SolvedBoard): PartiallySolvedBoard => {
-  const squareStrings = getSquareStrings();
+  const squareStrings = allSquareStrings;
   const board: PartiallySolvedBoard = solution.map((row) =>
     row.map((val) => val)
   );
@@ -30,7 +30,7 @@ const createPuzzleNext = (
   for (let squareString of shuffledSquares) {
     const indices = squareString.split("/");
     const [rowIndex, colIndex] = [Number(indices[0]), Number(indices[1])];
-    const val: boolean = solution[rowIndex][colIndex];
+    const val = solution[rowIndex][colIndex];
     const conditions = shuffleArray(
       getConditions(solution, rowIndex, colIndex, val)
     );

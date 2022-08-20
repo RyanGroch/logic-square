@@ -70,30 +70,22 @@ export const getSquares = (
   direction: Direction
 ): Array<Square> => {
   const squares: Array<Square> = [];
+  const start =
+    direction === "UP" || direction === "LEFT"
+      ? 0
+      : direction === "RIGHT"
+      ? colIndex + 1
+      : rowIndex + 1;
+  const end =
+    direction === "RIGHT" || direction === "DOWN"
+      ? 5
+      : direction === "UP"
+      ? rowIndex
+      : colIndex;
+  const vertical = direction === "UP" || direction === "DOWN";
 
-  switch (direction) {
-    case "UP":
-      for (let k = 0; k < rowIndex; k++) {
-        squares.push([k, colIndex]);
-      }
-      break;
-    case "RIGHT":
-      for (let k = colIndex + 1; k < 5; k++) {
-        squares.push([rowIndex, k]);
-      }
-      break;
-    case "DOWN":
-      for (let k = rowIndex + 1; k < 5; k++) {
-        squares.push([k, colIndex]);
-      }
-      break;
-    case "LEFT":
-      for (let k = 0; k < colIndex; k++) {
-        squares.push([rowIndex, k]);
-      }
-      break;
-    default:
-      throw new TypeError("Invalid direction type");
+  for (let k = start; k < end; k++) {
+    squares.push(vertical ? [k, colIndex] : [rowIndex, k]);
   }
 
   return squares;

@@ -1,12 +1,9 @@
 import { MouseEventHandler, useContext } from "react";
 import { GameContext, GameContextI } from "../app-logic/context";
 import styles from "./GameControls.module.css";
+import { colors } from "../color-consts";
 
-interface Props {
-  colors: Array<string>;
-}
-
-function GameControls({ colors }: Props) {
+function GameControls() {
   const { state, setState } = useContext(GameContext) as GameContextI;
   const selectColor: MouseEventHandler = (e) => {
     const target = e.currentTarget as HTMLElement;

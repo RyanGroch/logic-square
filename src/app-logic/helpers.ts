@@ -15,9 +15,6 @@ export const boardToColor = (board: PartiallySolvedBoard): ColorBoard =>
     row.map((val) => (typeof val !== "boolean" ? startingColor : val ? 0 : 1))
   );
 
-export const getDefaultColorBoard = (): number[][] =>
-  Array(5).fill(Array(5).fill(startingColor));
-
 export const getNumTrues = (minTrues: number, maxTrues: number): number =>
   Math.floor(Math.random() * (1 + maxTrues - minTrues) + minTrues);
 

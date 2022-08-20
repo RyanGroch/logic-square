@@ -7,29 +7,23 @@ import {
   PartiallySolvedBoard,
 } from "../types";
 import { useEffect, useState, useMemo } from "react";
-import {
-  boardToColor,
-  checkComplete,
-  getDefaultColorBoard,
-  getPregeneratedPuzzle,
-} from "./helpers";
+import { boardToColor, checkComplete, getPregeneratedPuzzle } from "./helpers";
+import { defaultColorBoard } from "../color-consts";
 
 export default function useAppLogic(): [
   StateI,
   React.Dispatch<React.SetStateAction<StateI>>
 ] {
   const [state, setState] = useState<StateI>({
-    initialized: false,
     puzzle: null,
     solution: null,
-    colorBoard: getDefaultColorBoard(),
+    colorBoard: defaultColorBoard,
     selectedColor: 0,
     startSolving: false,
     solving: false,
     startGenerating: false,
     generating: false,
-    startGettingPuzzle: true,
-    gettingPuzzle: false,
+    gettingPuzzle: true,
     complete: false,
     showModal: false,
     showError: false,
@@ -52,51 +46,33 @@ export default function useAppLogic(): [
       const [puzzle, solution] = generatorData;
       setState({
         ...state,
-        initialized: true,
         puzzle,
         solution,
         generating: false,
-        colorBoard: getDefaultColorBoard(),
+        colorBoard: defaultColorBoard,
       });
-      return;
     }
 
     if (state.solving) {
       const solverState = data as SolverStateI;
       const { board, solved } = solverState;
       const colorBoard = boardToColor(board);
-
-      if (solved) {
-        setState({
-          ...state,
-          solving: false,
-          colorBoard: colorBoard,
-          solverState: null,
-        });
-        return;
-      }
-
-      setState({ ...state, solverState: e.data, colorBoard });
+      setState({
+        ...state,
+        solving: !solved,
+        solverState: solved ? null : e.data,
+        colorBoard,
+      });
     }
   };
 
   useEffect(() => {
-    if (state.startGettingPuzzle) {
-      setState({
-        ...state,
-        gettingPuzzle: true,
-        startGettingPuzzle: false,
-        initialized: true,
-      });
-      return;
-    }
-
     if (state.gettingPuzzle) {
       const { puzzle, solution } = getPregeneratedPuzzle(
         state.minTrues,
         state.maxTrues
       );
-      const colorBoard = getDefaultColorBoard();
+      const colorBoard = defaultColorBoard;
       setState({
         ...state,
         gettingPuzzle: false,
@@ -128,7 +104,7 @@ export default function useAppLogic(): [
         conditions: [],
         solved: false,
       };
-      const colorBoard = getDefaultColorBoard();
+      const colorBoard = defaultColorBoard;
       setState({
         ...state,
         startSolving: false,

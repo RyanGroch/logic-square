@@ -6,4 +6,7 @@ export const colors = [
   "#f0b3ff",
   "#fff",
 ];
+
 export const startingColor = 5;
+
+export const defaultColorBoard = Array(5).fill(Array(5).fill(startingColor));
