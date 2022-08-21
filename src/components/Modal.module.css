@@ -85,3 +85,7 @@
 .modal__btn-secondary:hover {
   background-color: #002699;
 }
+
+.modal__disclaimer {
+  font-size: 2.25vmin;
+}
