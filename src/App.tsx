@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import GameControls from "./components/GameControls";
 import { GameContext } from "./app-logic/context";
 import useAppLogic from "./app-logic/useAppLogic";
+import Description from "./components/Description";
 
 function App() {
   const [state, setState] = useAppLogic();
@@ -15,6 +16,7 @@ function App() {
         <GameBoard />
         <GameControls />
       </GameContext.Provider>
+      <Description />
     </div>
   );
 }

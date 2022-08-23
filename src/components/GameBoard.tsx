@@ -43,6 +43,7 @@ function GameBoard() {
         {state.generating || state.gettingPuzzle ? (
           <div className={styles["loading-screen"]}>
             <p>Generating Puzzle...</p>
+            <div className={styles.background}></div>
           </div>
         ) : (
           <>

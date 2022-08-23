@@ -100,8 +100,8 @@ function Modal() {
             </button>
             <p className={styles.modal__disclaimer}>
               *Generating a new puzzle may take only a few seconds, or it may
-              take over an hour if you get unlucky. Using a pre-generated puzzle
-              is always instant.
+              take over an hour if you get unlucky. Fetching a pre-generated
+              puzzle is always instant.
             </p>
           </div>
         </form>

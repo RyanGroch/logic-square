@@ -86,17 +86,45 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #c5c5c5;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid #000;
+  overflow: hidden;
 }
 
 .loading-screen p {
   font-size: 4vmin;
   position: absolute;
   font-weight: 600;
+  z-index: 10;
+}
+
+.loading-screen .background {
+  background-image: radial-gradient(
+    circle at 40% 50%,
+    #ff9980 5%,
+    #ffffb3 10%,
+    #b3b3ff 30%,
+    #f0b3ff 40%
+  );
+  animation: rotate 3s linear infinite;
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  bottom: -100%;
+  right: -100%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 @media screen and (min-width: 30rem) {
