@@ -75,49 +75,12 @@ function Description() {
         considered to be solved when all of the true statements and none of the
         false statements are marked in green.
       </p>
-      <h3>About The Algorithm</h3>
-      <p>
-        This app generates and solves puzzles using a recursive backtracking
-        algorithm. The algorithm incrementally adds one piece of information at
-        a time, and removes a piece of information if at any point it fails to
-        satisfy the requirements of the problem.
-      </p>
-      <p>
-        The solver moves through each statement one by one, and first assumes
-        that the statement is false. Provided that this assumption does not
-        violate any of the rules of the puzzle, the solver moves on to the next
-        statement and makes the same assumption. When assuming a statement is
-        false inevitably violates the rules of the puzzle, the solver instead
-        assumes that the most recent statement it looked at is true. If this
-        also fails to produce a valid solution, the solver returns to the
-        previous statement, and assumes that it is true instead of false. This
-        process repeats until the solver finds the correct solution.
-      </p>
-      <p>
-        The puzzle generator works through a similar method. It first begins
-        with a 5 x 5 array of true and false values. Then, it replaces each
-        value one by one with a condition consisting of a direction, a number,
-        and a boolean value. After replacing each value, the generator runs the
-        solver to ensure that the puzzle still has only one solution. If it has
-        more than one solution, the algorithm backtracks.
-      </p>
-      <p>
-        Unfortunately, these algorithms run with an exponential time complexity.
-        The generator may produce a valid puzzle in a fraction of a second, or
-        it may take over an hour to complete. Keep this in mind if you are using
-        the generator; you may have to refresh the page if it is taking too
-        long. The solver, at worst, will only take a few minutes if you get
-        unlucky.
-      </p>
-      <p>
-        You can read more about backtracking algorithms{" "}
-        <a href="https://en.wikipedia.org/wiki/Backtracking">here</a>.
-      </p>
       <h3>Other Stuff I've Done</h3>
       <p>
-        You can find my developer portfolio <u>here</u>, and my Github profile{" "}
-        <a href="https://github.com/Thrasymachuss/">here</a>. Thanks for
-        checking out my app!
+        You can find my developer portfolio{" "}
+        <a href="https://thrasymachuss.github.io/portfolio/">here</a>, and my
+        Github profile <a href="https://github.com/Thrasymachuss/">here</a>.
+        Thanks for checking out my app!
       </p>
     </section>
   );
