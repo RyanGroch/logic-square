@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/logic-square/static/css/main.9d3a0a0b.css",
-    "main.js": "/logic-square/static/js/main.ab85dcac.js",
+    "main.js": "/logic-square/static/js/main.2c22edfb.js",
     "static/js/158.9dd7f6d8.chunk.js": "/logic-square/static/js/158.9dd7f6d8.chunk.js",
     "static/js/787.98c7417b.chunk.js": "/logic-square/static/js/787.98c7417b.chunk.js",
     "index.html": "/logic-square/index.html",
     "main.9d3a0a0b.css.map": "/logic-square/static/css/main.9d3a0a0b.css.map",
-    "main.ab85dcac.js.map": "/logic-square/static/js/main.ab85dcac.js.map",
+    "main.2c22edfb.js.map": "/logic-square/static/js/main.2c22edfb.js.map",
     "158.9dd7f6d8.chunk.js.map": "/logic-square/static/js/158.9dd7f6d8.chunk.js.map",
     "787.98c7417b.chunk.js.map": "/logic-square/static/js/787.98c7417b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9d3a0a0b.css",
-    "static/js/main.ab85dcac.js"
+    "static/js/main.2c22edfb.js"
   ]
 }
