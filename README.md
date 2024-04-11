@@ -4,7 +4,7 @@ A type of logic puzzle of my own invention. The app generates random puzzles usi
 
 This type of puzzle is best compared to Sudoku; the game has a consistent set of rules, but the number of possible puzzles is immense.
 
-You can use the app to play through some puzzles yourself, or you can have the app solve the puzzles for you. You can visit the app [here](https://thrasymachuss.github.io/logic-square/).
+You can use the app to play through some puzzles yourself, or you can have the app solve the puzzles for you. You can visit the app [here](https://ryangroch.github.io/logic-square/).
 
 ## How to Play
 
